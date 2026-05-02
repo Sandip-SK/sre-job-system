@@ -1,0 +1,33 @@
+groups:
+  - name: sre-alerts
+    rules:
+
+      - alert: HighRequestLatency
+        expr: histogram_quantile(
+                0.95,
+                sum(rate(http_request_latency_seconds_bucket[5m])) by (le)
+              ) > 1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API latency"
+          description: "P95 latency is above 1 second"
+
+      - alert: WorkerDown
+        expr: up{job="worker"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Worker is down"
+          description: "Worker service is not reachable"
+
+      - alert: LowJobProcessing
+        expr: rate(jobs_processed_total[1m]) == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No jobs being processed"
+          description: "Worker is idle or stuck"
