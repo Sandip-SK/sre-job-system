@@ -406,17 +406,6 @@ docker build -t your-registry/worker:latest worker/
 docker push your-registry/api:latest
 docker push your-registry/worker:latest
 ```
-
----
-
-## 📜 License
-
-[Add your license here]
-
-## 👥 Contributing
-
-[Add contribution guidelines here]
-
 ---
 
 **Last Updated**: May 2, 2026
