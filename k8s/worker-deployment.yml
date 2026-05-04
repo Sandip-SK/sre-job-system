@@ -13,16 +13,16 @@ spec:
         app: worker
     spec:
       containers:
-      - name: worker
-        image: sandy10/mini-sre-api:1.0
-        command: ["python", "worker.py"]
-        env:
-          - name: REDIS_HOST
-            value: "redis"
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
+        - name: worker
+          image: sandy10/mini-sre-worker:latest
+          command: [ "python", "worker.py" ]
+          env:
+            - name: REDIS_HOST
+              value: "redis"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

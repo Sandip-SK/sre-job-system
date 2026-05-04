@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: task-api
-          image: sandy10/mini-sre-api:1.0
+          image: sandy10/mini-sre-api:latest
           ports:
             - containerPort: 8080
           env:
