@@ -22,8 +22,14 @@ jobs:
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
         
-    - name: Build Docker Image
-      run: docker build -t sandy10/mini-sre-api:latest .
+    - name: Build API Docker Image
+      run: docker build -t sandy10/mini-sre-api:latest ./api
 
-    - name: Push Docker Image
+    - name: Build Worker Docker Image
+      run: docker build -t sandy10/mini-sre-api:latest ./worker
+
+    - name: Push API Docker Images
       run: docker push sandy10/mini-sre-api:latest
+
+    - name: Push Worker Docker Images
+      run: docker push sandy10/mini-sre-worker:latest
